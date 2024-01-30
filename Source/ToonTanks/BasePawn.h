@@ -16,7 +16,7 @@ public:
 	ABasePawn();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float Speed = 400.f;
+	float Speed = 400;
 	
 protected:
 	// Called when the game starts or when spawned
@@ -25,9 +25,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 private:
 	UPROPERTY(EditAnywhere)

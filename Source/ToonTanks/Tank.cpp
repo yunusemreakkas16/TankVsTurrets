@@ -7,7 +7,7 @@
 ATank::ATank()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
     SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("ArmComponent"));
     SpringArmComponent ->SetupAttachment(RootComponent);
@@ -16,25 +16,21 @@ ATank::ATank()
     CameraComponent ->SetupAttachment(SpringArmComponent);
 }
 
-/*
-// Called when the game starts or when spawned
-void ATank::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-// Called every frame
-void ATank::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ATank::Move);
 }
 
-*/
+void ATank::Move(float Value)
+{
+	FVector DeltaLocation = FVector::ZeroVector;
+	DeltaLocation.X = Value*Speed;
+	AddActorLocalOffset(DeltaLocation);
+	UE_LOG(LogTemp, Display, TEXT("W is working value is = %f"),DeltaLocation.X);
+}
+
+
 
 
