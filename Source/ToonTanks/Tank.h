@@ -18,7 +18,10 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
 
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float Speed = 833;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float TurnRate = 60;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
@@ -32,4 +35,6 @@ private:
 	class UCameraComponent* CameraComponent;
 
 	void Move(float Value);
+
+	void Turn(float Value);
 };
