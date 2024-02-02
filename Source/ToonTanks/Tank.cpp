@@ -8,13 +8,35 @@
 ATank::ATank()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bCanEverTick = true;
 
     SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("ArmComponent"));
     SpringArmComponent ->SetupAttachment(RootComponent);
 
     CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
     CameraComponent ->SetupAttachment(SpringArmComponent);
+}
+
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+	PlayerControllerRef = Cast<APlayerController>(GetController());
+}
+
+// Called every frame
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if(PlayerControllerRef)
+	{
+		FHitResult HitResult;
+		PlayerControllerRef->GetHitResultUnderCursor(
+			ECollisionChannel::ECC_Visibility,
+			 false,
+			 HitResult);
+		RotateTurret(HitResult.ImpactPoint);
+	}
 }
 
 // Called to bind functionality to input
@@ -30,14 +52,14 @@ void ATank::Move(float Value)
 	FVector DeltaLocation = FVector::ZeroVector;
 	DeltaLocation.X = Value*Speed*UGameplayStatics::GetWorldDeltaSeconds(this);
 	AddActorLocalOffset(DeltaLocation,true);
-	UE_LOG(LogTemp, Display, TEXT("W is working value is = %f"),DeltaLocation.X);
+	
 }
 void ATank::Turn(float Value)
 {
 	FRotator DeltaRotation = FRotator::ZeroRotator;
 	DeltaRotation.Yaw = Value*TurnRate*UGameplayStatics::GetWorldDeltaSeconds(this);
 	AddActorLocalRotation(DeltaRotation,true);
-	UE_LOG(LogTemp, Display, TEXT("D is working value is =%f"),DeltaRotation.Yaw);
+
 }
 
 
