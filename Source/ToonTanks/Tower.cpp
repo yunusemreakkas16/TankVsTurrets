@@ -24,7 +24,7 @@ void ATower::Tick(float DeltaTime)
         float Distance = FVector::Dist(GetActorLocation(), Tank->GetActorLocation());
         if(Distance<=FireRange)
         {
-            RotateTurret(Tank->GetActorLocation());   
+            RotateTurret(Tank->GetActorLocation(),TowerTurnSpeed);
         }
     }
 }

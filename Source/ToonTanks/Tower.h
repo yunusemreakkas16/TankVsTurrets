@@ -30,4 +30,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	float FireRange = 300.f;
+	
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	float TowerTurnSpeed = 10.f;
 };

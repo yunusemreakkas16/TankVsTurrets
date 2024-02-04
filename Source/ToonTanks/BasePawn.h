@@ -16,7 +16,8 @@ public:
 	ABasePawn();
 
 protected:
-	void RotateTurret(FVector LookAtTarget);
+	void RotateTurret(FVector LookAtTarget, float TurretSpeed);
+	void Fire();
 
 private:
 	UPROPERTY(EditAnywhere)

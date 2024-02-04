@@ -22,6 +22,8 @@ public:
 	float Speed = 833;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float TurnRate = 60;
+	UPROPERTY(EditAnywhere)
+	float TankTurretTurnRate = 5.f;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
