@@ -33,4 +33,10 @@ private:
 	
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	float TowerTurnSpeed = 10.f;
+
+	FTimerHandle FireRateTimerHandle;
+	float FireRate =2.f;
+	void CheckFireCondition();
+
+	bool IsInRange();
 };
