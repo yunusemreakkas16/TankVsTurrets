@@ -27,4 +27,7 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	UStaticMeshComponent* ProjectileMesh;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	class UProjectileMovementComponent* ProjectileMovementComponent;
 };
