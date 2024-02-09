@@ -2,13 +2,13 @@
 
 
 #include "HealthComponent.h"
+#include "Kismet/GameplayStatics.h"
 
-// Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
 }
 
 
@@ -19,7 +19,7 @@ void UHealthComponent::BeginPlay()
 
 	Health = MaxHealth;
 
-	GetOwner()->OnTakeAnyDamage.AddDynamic(this, &UHealthComponent::DamageTaken);
+	GetOwner()->OnTakeAnyDamage.AddDynamic(this, &UHealthComponent::DamageTaken); //Actor get manages to reach Delagate...
 }
 
 
@@ -31,5 +31,8 @@ void UHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 
 void UHealthComponent::DamageTaken(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* Instigator, AActor* DamageCauser)
 {
-	
+	if (Damage <= 0.f) return;
+
+	Health -= Damage;
+	UE_LOG(LogTemp, Warning, TEXT("Health: %f"), Health);
 }
