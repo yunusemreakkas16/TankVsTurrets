@@ -25,6 +25,11 @@ ABasePawn::ABasePawn()
 
 }
 
+void ABasePawn::HandleDestruction()
+{
+	// TODO: Visual/ sound effects
+}
+
 void ABasePawn::RotateTurret(FVector LookAtTarget,float TurretSpeed)
 {
 	// All of variables are world space so we used  Set World Rotation...
