@@ -16,8 +16,8 @@ AProjectile::AProjectile()
 	RootComponent = ProjectileMesh;
 
 	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
-	ProjectileMovementComponent->MaxSpeed = 10000.f;
-	ProjectileMovementComponent->InitialSpeed= 7500.f;
+	ProjectileMovementComponent->MaxSpeed = 35000.f;
+	ProjectileMovementComponent->InitialSpeed= 28000.f;
 }
 
 // Called when the game starts or when spawned
