@@ -28,6 +28,11 @@ ABasePawn::ABasePawn()
 void ABasePawn::HandleDestruction()
 {
 	UGameplayStatics::SpawnEmitterAtLocation(this, Destruction, GetActorLocation(), GetActorRotation());
+
+	if(DeathSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(GetWorld(), DeathSound, GetActorLocation());
+	}
 }
 
 void ABasePawn::RotateTurret(FVector LookAtTarget,float TurretSpeed)
