@@ -6,11 +6,15 @@
 #include "Tank.h"
 #include "Tower.h"
 #include "ToonTanksPlayerController.h"
+#include "Sound/SoundCue.h"
 
 void AToonTanksGameMode::BeginPlay()
 {
     Super::BeginPlay();
     HandleGameStart();
+
+    UGameplayStatics::PlaySound2D(this, LofiPlayerCue);
+    
 }
 
 void AToonTanksGameMode::ActorDied(AActor *DeadActor)

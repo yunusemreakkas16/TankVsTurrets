@@ -40,4 +40,6 @@ private:
 	int32 TargetTowers = 0;
 	int32 GetTargetTowerCount();
 
+	UPROPERTY(EditAnywhere, category = "Music")
+	class USoundCue* LofiPlayerCue;
 };
