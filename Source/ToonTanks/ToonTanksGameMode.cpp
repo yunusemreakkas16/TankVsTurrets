@@ -1,20 +1,32 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+
 #include "ToonTanksGameMode.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tank.h"
 #include "Tower.h"
 #include "ToonTanksPlayerController.h"
 #include "Sound/SoundCue.h"
+#include "Components/AudioComponent.h" 
+
+AToonTanksGameMode::AToonTanksGameMode()
+{
+    // Ses bileşeninizi oluşturun
+    MyAudioComponent = CreateDefaultSubobject<UAudioComponent>(TEXT("MyAudioComponent"));
+    MyAudioComponent->bAutoActivate = false; 
+}
 
 void AToonTanksGameMode::BeginPlay()
 {
     Super::BeginPlay();
     HandleGameStart();
 
-    UGameplayStatics::PlaySound2D(this, LofiPlayerCue);
-    
+    if(LofiPlayerCue && MyAudioComponent)
+    {
+        MyAudioComponent->SetSound(LofiPlayerCue);
+        MyAudioComponent->Play();
+    }
 }
 
 void AToonTanksGameMode::ActorDied(AActor *DeadActor)

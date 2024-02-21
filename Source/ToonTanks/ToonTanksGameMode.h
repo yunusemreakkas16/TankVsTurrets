@@ -25,7 +25,8 @@ protected:
 	void GameOver(bool bWonGame);
 
 public:
-
+	
+	AToonTanksGameMode();
 	void ActorDied(AActor* DeadActor);
 
 private:
@@ -42,4 +43,6 @@ private:
 
 	UPROPERTY(EditAnywhere, category = "Music")
 	class USoundCue* LofiPlayerCue;
+
+	class UAudioComponent* MyAudioComponent;
 };

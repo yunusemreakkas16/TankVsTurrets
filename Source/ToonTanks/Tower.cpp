@@ -44,7 +44,7 @@ void ATower::CheckFireCondition()
 
 bool ATower::IsInRange()
 {
-    if(Tank)
+    if(Tank && Tank->balive == true)
     {
         float Distance = FVector::Dist(GetActorLocation(), Tank->GetActorLocation());
         if(Distance<=FireRange)
