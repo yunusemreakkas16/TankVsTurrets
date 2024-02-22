@@ -72,8 +72,10 @@ void AToonTanksGameMode::HandleGameStart()
         FTimerDelegate PlayerEnableTimerDelegate = FTimerDelegate::CreateUObject(ToonTanksPlayerController, &AToonTanksPlayerController::SetPlayerEnabledState, true);
 
         GetWorldTimerManager().SetTimer(PlayerEnableTimerHandle, PlayerEnableTimerDelegate, StartDelay, false);
+
+        FTimerHandle StartingTimeHandle;
+        GetWorldTimerManager().SetTimer(StartingTimeHandle, this, &AToonTanksGameMode::StartingTimer, 3.f, false);
     }
-    
 }
 
 int32 AToonTanksGameMode::GetTargetTowerCount()
@@ -82,5 +84,3 @@ int32 AToonTanksGameMode::GetTargetTowerCount()
     UGameplayStatics::GetAllActorsOfClass(this, ATower::StaticClass(), Towers);
     return Towers.Num();
 }
-
-

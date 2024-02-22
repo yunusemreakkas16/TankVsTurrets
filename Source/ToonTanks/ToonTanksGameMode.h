@@ -24,6 +24,15 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void GameOver(bool bWonGame);
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartingTimer();
+
+	UFUNCTION(BlueprintCallable, Category = "Game")
+	float GetElapsedTime() const
+{
+    return ElapsedTime;
+}
+
 public:
 	
 	AToonTanksGameMode();
@@ -35,6 +44,7 @@ private:
 	class AToonTanksPlayerController* ToonTanksPlayerController;
 
 	float StartDelay = 3.f;
+	float ElapsedTime;
 
 	void HandleGameStart();
 
